@@ -10,16 +10,24 @@ import UIKit
 import AVFoundation
 import Photos
 
-let font = UIFont.systemFont(ofSize: 19.0)
-let attributes : [NSAttributedStringKey:Any] = [.font:font, .foregroundColor: UIColor.white]
+let font = UIFont(name:"AvenirNext-Regular", size:20.0) ?? UIFont.systemFont(ofSize: 20.0)
+let attributes : [NSAttributedStringKey:Any] = [.font:font, .foregroundColor: UIColor.black]
 
 class ViewController: UIViewController {
-
+    
+    @IBOutlet var previewView : UIView?
     @IBOutlet var textView:UITextView?
+    
+    @IBOutlet var placeholderLabel : UILabel?
+    @IBOutlet var previewButton : UIButton?
+
     @IBOutlet var toolbar:UIToolbar?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let textView = textView {
+            textViewDidChange(textView)
+        }
         textView?.inputAccessoryView = toolbar
     }
 
@@ -35,9 +43,24 @@ class ViewController: UIViewController {
         textView?.resignFirstResponder()
     }
 
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showPreview" {
+            let shareOption = segue.destination as? ShareViewController
+            shareOption?.previewImage = captureScreen()
+        }
+    }
+    
+    
 }
 
 extension ViewController: UITextViewDelegate {
+    
+    func textViewDidChange(_ textView: UITextView) {
+        placeholderLabel?.isHidden = !textView.text.isEmpty
+        previewButton?.isEnabled = !textView.text.isEmpty
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardShown), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
@@ -54,7 +77,7 @@ extension ViewController: UITextViewDelegate {
         let info = aNotification.userInfo
         let kbSize = (info?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size
         let height =  kbSize?.height ?? 0.0
-        let insets = UIEdgeInsetsMake(0.0, 0.0, height, 0.0)
+        let insets = UIEdgeInsetsMake(0.0, 0.0, height + 40.0, 0.0)
         textView?.contentInset = insets
     }
     
@@ -108,7 +131,7 @@ extension ViewController:UIImagePickerControllerDelegate,UINavigationControllerD
         )
         alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
         alert.addAction(UIAlertAction(title: "Settings", style: .cancel, handler: { (alert) -> Void in
-            UIApplication.shared.openURL(NSURL(string: UIApplicationOpenSettingsURLString)! as URL)
+            UIApplication.shared.open(NSURL(string: UIApplicationOpenSettingsURLString)! as URL)
         }))
         present(alert, animated: true, completion: nil)
     }
@@ -154,6 +177,22 @@ extension ViewController {
         }
     }
     
+    func captureScreen() -> UIImage? {
+        textView?.resignFirstResponder()
+        
+        var image : UIImage? = nil
+        if let bg = previewView {
+            UIGraphicsBeginImageContext(bg.bounds.size)
+            if let context = UIGraphicsGetCurrentContext() {
+                bg.layer.render(in: context)
+                image = UIGraphicsGetImageFromCurrentImageContext()
+                UIGraphicsEndImageContext()
+            }
+        }
+        
+        return image
+    }
+    
 }
 
 extension UIImage {
@@ -170,4 +209,7 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return normalizedImage
     }
+    
+    
+    
 }
