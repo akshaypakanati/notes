@@ -59,6 +59,9 @@ extension ViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         placeholderLabel?.isHidden = !textView.text.isEmpty
         previewButton?.isEnabled = !textView.text.isEmpty
+        let attri = NSMutableAttributedString(attributedString:textView.attributedText)
+        attri.addAttributes(attributes, range: NSMakeRange(0,attri.length))
+        textView.attributedText = attri
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -158,13 +161,13 @@ extension ViewController {
     func appendImage(with image:UIImage) {
         let textAttachment = NSTextAttachment()
         textAttachment.image = image
-        let oldWidth = textAttachment.image!.size.width
-        let width : CGFloat =  300.0
-        let scaleFactor = oldWidth / (width - 10)
-        if let cgImage = textAttachment.image?.cgImage {
-            textAttachment.image = UIImage(cgImage:cgImage, scale: scaleFactor, orientation: .up)
-            
-            textAttachment.bounds = CGRect(x: (self.view.frame.size.width - width)/2, y: 0, width: width, height: width)
+        
+//        let oldWidth = textAttachment.image!.size.width
+//        let scaleFactor = oldWidth / (width - 10)
+        if let cgImage = textAttachment.image?.cgImage, let textView = textView {
+            textAttachment.image = UIImage(cgImage:cgImage, scale: 1, orientation: .up)
+            let width : CGFloat =  textView.frame.size.width - 20
+            textAttachment.bounds = CGRect(x: 150, y: 0, width: width, height: width*(2/3))
         }
 
         let attri = NSAttributedString(attachment: textAttachment)
