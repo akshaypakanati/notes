@@ -147,7 +147,7 @@ extension ViewController {
         let attri = NSAttributedString(attachment: textAttachment)
         if let range = textView?.selectedRange, let attriText = textView?.attributedText {
             let mutableAttriString = NSMutableAttributedString(attributedString:attriText)
-            mutableAttriString.addAttributes(attributes, range: NSRange(loc:0 ,len:attriText.length))
+            mutableAttriString.addAttributes(attributes, range: NSMakeRange(0, attriText.length))
             mutableAttriString.replaceCharacters(in: range, with: attri)
             textView?.attributedText = mutableAttriString
             textView?.resignFirstResponder()
