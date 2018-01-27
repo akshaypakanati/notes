@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 import Photos
 
-let font = UIFont(name:"AvenirNext-Regular", size:20.0) ?? UIFont.systemFont(ofSize: 20.0)
+let font = UIFont.systemFont(ofSize: 20.0)//(name:"AvenirNext-Regular", size:20.0) ?? UIFont.systemFont(ofSize: 20.0)
 let attributes : [NSAttributedStringKey:Any] = [.font:font, .foregroundColor: UIColor.black]
 
 class ViewController: UIViewController {
@@ -29,6 +29,7 @@ class ViewController: UIViewController {
             textViewDidChange(textView)
         }
         textView?.inputAccessoryView = toolbar
+        textView?.allowsEditingTextAttributes = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,9 +60,9 @@ extension ViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         placeholderLabel?.isHidden = !textView.text.isEmpty
         previewButton?.isEnabled = !textView.text.isEmpty
-        let attri = NSMutableAttributedString(attributedString:textView.attributedText)
-        attri.addAttributes(attributes, range: NSMakeRange(0,attri.length))
-        textView.attributedText = attri
+//        let attri = NSMutableAttributedString(attributedString:textView.attributedText)
+//        attri.addAttributes(attributes, range: NSMakeRange(0,attri.length))
+//        textView.attributedText = attri
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -185,7 +186,7 @@ extension ViewController {
         let attri = NSAttributedString(attachment: textAttachment)
         if let range = textView?.selectedRange, let attriText = textView?.attributedText {
             let mutableAttriString = NSMutableAttributedString(attributedString:attriText)
-            mutableAttriString.addAttributes(attributes, range: NSMakeRange(0, attriText.length))
+            //mutableAttriString.addAttributes(attributes, range: NSMakeRange(0, attriText.length))
             mutableAttriString.replaceCharacters(in: range, with: attri)
             textView?.attributedText = mutableAttriString
             textView?.resignFirstResponder()
