@@ -93,7 +93,7 @@ extension ViewController: UITextViewDelegate {
 
 
 //MARK: - Image Upload
-extension ViewController:UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+extension ViewController:UIImagePickerControllerDelegate,UINavigationControllerDelegate,CropViewControllerDelegate {
     
     func openGallery() {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
@@ -101,7 +101,6 @@ extension ViewController:UIImagePickerControllerDelegate,UINavigationControllerD
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
             imagePicker.sourceType = .photoLibrary
-            imagePicker.allowsEditing = true
             self.navigationController?.present(imagePicker, animated: true, completion: nil)
         }
     }
@@ -142,18 +141,26 @@ extension ViewController:UIImagePickerControllerDelegate,UINavigationControllerD
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        
-        if let image = info[UIImagePickerControllerEditedImage] as? UIImage, let correctImage = image.correctlyOrientedImage() {
-                appendImage(with: correctImage)
-            }
-        picker.dismiss(animated: true, completion: nil)
-        
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            picker.dismiss(animated: false, completion: {
+                let cropViewController = CropViewController(image: image)
+                cropViewController.delegate = self
+                self.present(cropViewController, animated: true, completion: nil)
+            })
+        }
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
-    
+    func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
+        // 'image' is the newly cropped version of the original image
+        if let correctImage = image.correctlyOrientedImage() {
+            appendImage(with: correctImage)
+        }
+        
+        cropViewController.dismiss(animated: true, completion: nil)
+    }
 }
 
 extension ViewController {
@@ -162,12 +169,17 @@ extension ViewController {
         let textAttachment = NSTextAttachment()
         textAttachment.image = image
         
-//        let oldWidth = textAttachment.image!.size.width
-//        let scaleFactor = oldWidth / (width - 10)
         if let cgImage = textAttachment.image?.cgImage, let textView = textView {
-            textAttachment.image = UIImage(cgImage:cgImage, scale: 1, orientation: .up)
-            let width : CGFloat =  textView.frame.size.width - 20
-            textAttachment.bounds = CGRect(x: 150, y: 0, width: width, height: width*(2/3))
+            let image = UIImage(cgImage:cgImage, scale: 1, orientation: .up)
+            let scale = image.size.width/(textView.frame.size.width - 20)
+            var width : CGFloat =  image.size.width
+            var height = image.size.height
+            if scale > 1 {
+                width = textView.frame.size.width - 20
+                height = height/scale
+            }
+            
+            textAttachment.bounds = CGRect(x: 0, y: 0, width: width, height: height)
         }
 
         let attri = NSAttributedString(attachment: textAttachment)
@@ -185,7 +197,7 @@ extension ViewController {
         
         var image : UIImage? = nil
         if let bg = previewView {
-            UIGraphicsBeginImageContext(bg.bounds.size)
+            UIGraphicsBeginImageContextWithOptions(bg.bounds.size, false, 2.0)
             if let context = UIGraphicsGetCurrentContext() {
                 bg.layer.render(in: context)
                 image = UIGraphicsGetImageFromCurrentImageContext()

@@ -45,7 +45,7 @@
                                         <rect key="frame" x="10" y="70" width="355" height="463"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <attributedString key="attributedText"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES" smartDashesType="no"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" enablesReturnKeyAutomatically="YES" smartDashesType="no"/>
                                         <connections>
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="OXT-qq-5tu"/>
                                         </connections>
@@ -148,7 +148,7 @@
         <!--Preview-->
         <scene sceneID="Y3U-Sp-sL3">
             <objects>
-                <viewController id="asH-JX-5Z1" customClass="ShareViewController" customModule="JanaSenaPost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="asH-JX-5Z1" customClass="ShareViewController" customModule="Notes" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VRC-Yc-rqR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
