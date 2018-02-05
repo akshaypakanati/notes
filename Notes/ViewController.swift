@@ -49,6 +49,7 @@ class ViewController: UIViewController {
         if segue.identifier == "showPreview" {
             let shareOption = segue.destination as? ShareViewController
             shareOption?.previewImage = captureScreen()
+            
         }
     }
     

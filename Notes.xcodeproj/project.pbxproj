@@ -23,6 +23,15 @@
 		BAC101E2201CF6D50066367D /* TOCroppedImageAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = BAC101DC201CF6D50066367D /* TOCroppedImageAttributes.m */; };
 		BAC101E3201CF6D50066367D /* TOCropViewControllerTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = BAC101DE201CF6D50066367D /* TOCropViewControllerTransitioning.m */; };
 		BAC101E4201CF6D50066367D /* UIImage+CropRotate.m in Sources */ = {isa = PBXBuildFile; fileRef = BAC101E0201CF6D50066367D /* UIImage+CropRotate.m */; };
+		BAFDB4672028ED3700056923 /* DraftCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFDB4652028ED3700056923 /* DraftCell.swift */; };
+		BAFDB4682028ED3700056923 /* DraftCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAFDB4662028ED3700056923 /* DraftCell.xib */; };
+		BAFDB46F2028EF9E00056923 /* UICollectionView+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFDB4692028EF9D00056923 /* UICollectionView+Reusable.swift */; };
+		BAFDB4702028EF9E00056923 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFDB46A2028EF9D00056923 /* Reusable.swift */; };
+		BAFDB4712028EF9E00056923 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFDB46B2028EF9D00056923 /* UIView+Constraints.swift */; };
+		BAFDB4722028EF9E00056923 /* BaseRoundedCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFDB46C2028EF9D00056923 /* BaseRoundedCardCell.swift */; };
+		BAFDB4732028EF9E00056923 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFDB46D2028EF9E00056923 /* BaseView.swift */; };
+		BAFDB4742028EF9E00056923 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFDB46E2028EF9E00056923 /* GradientView.swift */; };
+		BAFDB4782028F00600056923 /* DraftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFDB4772028F00600056923 /* DraftViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +63,15 @@
 		BAC101DE201CF6D50066367D /* TOCropViewControllerTransitioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOCropViewControllerTransitioning.m; sourceTree = "<group>"; };
 		BAC101DF201CF6D50066367D /* UIImage+CropRotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CropRotate.h"; sourceTree = "<group>"; };
 		BAC101E0201CF6D50066367D /* UIImage+CropRotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CropRotate.m"; sourceTree = "<group>"; };
+		BAFDB4652028ED3700056923 /* DraftCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftCell.swift; sourceTree = "<group>"; };
+		BAFDB4662028ED3700056923 /* DraftCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DraftCell.xib; sourceTree = "<group>"; };
+		BAFDB4692028EF9D00056923 /* UICollectionView+Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Reusable.swift"; sourceTree = "<group>"; };
+		BAFDB46A2028EF9D00056923 /* Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		BAFDB46B2028EF9D00056923 /* UIView+Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
+		BAFDB46C2028EF9D00056923 /* BaseRoundedCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseRoundedCardCell.swift; sourceTree = "<group>"; };
+		BAFDB46D2028EF9E00056923 /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		BAFDB46E2028EF9E00056923 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		BAFDB4772028F00600056923 /* DraftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +117,9 @@
 				87DCAEA22004CC4A00692DA9 /* LaunchScreen.storyboard */,
 				87DCAEA52004CC4A00692DA9 /* Info.plist */,
 				BAC101C5201CF6030066367D /* Notes-Bridging-Header.h */,
+				BAFDB4652028ED3700056923 /* DraftCell.swift */,
+				BAFDB4662028ED3700056923 /* DraftCell.xib */,
+				BAFDB4772028F00600056923 /* DraftViewController.swift */,
 			);
 			path = Notes;
 			sourceTree = "<group>";
@@ -106,6 +127,7 @@
 		BAC101CB201CF64E0066367D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BAFDB4762028EFB300056923 /* CustomCell */,
 				BAC101CC201CF64E0066367D /* TOCropOverlayView.h */,
 				BAC101CD201CF64E0066367D /* TOCropOverlayView.m */,
 				BAC101CE201CF64E0066367D /* TOCropScrollView.h */,
@@ -131,6 +153,19 @@
 				BAC101E0201CF6D50066367D /* UIImage+CropRotate.m */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		BAFDB4762028EFB300056923 /* CustomCell */ = {
+			isa = PBXGroup;
+			children = (
+				BAFDB46C2028EF9D00056923 /* BaseRoundedCardCell.swift */,
+				BAFDB46D2028EF9E00056923 /* BaseView.swift */,
+				BAFDB46E2028EF9E00056923 /* GradientView.swift */,
+				BAFDB46A2028EF9D00056923 /* Reusable.swift */,
+				BAFDB4692028EF9D00056923 /* UICollectionView+Reusable.swift */,
+				BAFDB46B2028EF9D00056923 /* UIView+Constraints.swift */,
+			);
+			path = CustomCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,6 +231,7 @@
 				87DCAEA42004CC4A00692DA9 /* LaunchScreen.storyboard in Resources */,
 				87DCAEA12004CC4A00692DA9 /* Assets.xcassets in Resources */,
 				87DCAE9F2004CC4A00692DA9 /* Main.storyboard in Resources */,
+				BAFDB4682028ED3700056923 /* DraftCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,16 +243,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA5E261F2005267D00346771 /* ShareViewController.swift in Sources */,
+				BAFDB4672028ED3700056923 /* DraftCell.swift in Sources */,
+				BAFDB4742028EF9E00056923 /* GradientView.swift in Sources */,
 				BAC101CA201CF6230066367D /* CropViewController.swift in Sources */,
+				BAFDB4782028F00600056923 /* DraftViewController.swift in Sources */,
 				BAC101D4201CF64E0066367D /* TOCropOverlayView.m in Sources */,
 				BAC101D7201CF64E0066367D /* TOCropView.m in Sources */,
 				BAC101E1201CF6D50066367D /* TOActivityCroppedImageProvider.m in Sources */,
+				BAFDB4712028EF9E00056923 /* UIView+Constraints.swift in Sources */,
+				BAFDB46F2028EF9E00056923 /* UICollectionView+Reusable.swift in Sources */,
+				BAFDB4722028EF9E00056923 /* BaseRoundedCardCell.swift in Sources */,
 				87DCAE9C2004CC4A00692DA9 /* ViewController.swift in Sources */,
 				BAC101E2201CF6D50066367D /* TOCroppedImageAttributes.m in Sources */,
 				BAC101D6201CF64E0066367D /* TOCropToolbar.m in Sources */,
 				BAC101E4201CF6D50066367D /* UIImage+CropRotate.m in Sources */,
 				BAC101D5201CF64E0066367D /* TOCropScrollView.m in Sources */,
+				BAFDB4702028EF9E00056923 /* Reusable.swift in Sources */,
 				BAC101E3201CF6D50066367D /* TOCropViewControllerTransitioning.m in Sources */,
+				BAFDB4732028EF9E00056923 /* BaseView.swift in Sources */,
 				87DCAE9A2004CC4A00692DA9 /* AppDelegate.swift in Sources */,
 				BAC101C8201CF6070066367D /* TOCropViewController.m in Sources */,
 			);
